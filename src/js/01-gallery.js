@@ -1,4 +1,4 @@
-// Add imports above this line
+import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import { galleryItems } from './gallery-items';
 // Change code below this line
@@ -10,27 +10,17 @@ let galleryEl = document.querySelector('.gallery');
 for (const item of galleryItems) {
   galleryEl.insertAdjacentHTML(
     'beforeend',
-    `<div class="gallery__item">
-    <a class="gallery__link" href="${item.original}">
-      <img
-        class="gallery__image"
-        src="${item.preview}"
-        data-source="${item.original}"
-        alt="${item.description}"
-      />
-    </a>
-  </div>`
+    `<li class="gallery__item">
+   <a class="gallery__link" href="${item.original}">
+      <img class="gallery__image" src="${item.preview}" alt="${item.description}" />
+   </a>
+</li>`
   );
 }
 
 galleryEl.addEventListener('click', event => event.preventDefault());
 
-document.querySelector('.gallery').onclick = () => {
-  basicLightbox
-    .create(
-      `
-		<img width="1400" height="900" src="${event.target.dataset.source}">
-	`
-    )
-    .show();
-};
+var lightbox = new SimpleLightbox('.gallery li a', {
+  captionDelay: 250,
+  captionsData: 'alt',
+});
