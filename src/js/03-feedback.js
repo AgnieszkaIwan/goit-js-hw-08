@@ -41,6 +41,7 @@ const clearFormState = () => {
   emailInput.value = '';
   messageInput.value = '';
 };
+console.log({ email: emailInput.name, message: messageInput.name });
 
 form.addEventListener(
   'input',
